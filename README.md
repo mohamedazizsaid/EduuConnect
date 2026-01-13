@@ -116,4 +116,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-Built with ❤️ by the EduConnect Team.
+Built with ❤️ by Said Mohamed Aziz.
