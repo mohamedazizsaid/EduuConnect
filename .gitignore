@@ -1,0 +1,9 @@
+# node_modules
+backend_express/node_modules/
+ai_service_python/.venv/
+ai_service_python/__pycache__/
+blockchain/node_modules/
+mobile/.dart_tool/
+mobile/build/
+mobile/ios/
+mongodb_data/
