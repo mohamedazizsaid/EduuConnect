@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend_express
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DATABASE_URL=mongodb://mongodb:27017/educonnect
+      - AI_SERVICE_URL=http://ai-service:8000
+      - BLOCKCHAIN_URL=http://blockchain:8545
+      - JWT_SECRET=dev_secret_key_change_me
+    depends_on:
+      - mongodb
+      - ai-service
+      - blockchain
+     
+    networks:
+      - educonnect-network
+
+  ai-service:
+    build: ./ai_service_python
+    ports:
+      - "8000:8000"
+    networks:
+      - educonnect-network
+
+  mobile:
+    build: ./mobile
+    ports:
+      - "8080:80"
+    networks:
+      - educonnect-network
+
+  blockchain:
+    build: ./blockchain
+    ports:
+      - "8545:8545"
+    networks:
+      - educonnect-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - educonnect-network
+
+networks:
+  educonnect-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
